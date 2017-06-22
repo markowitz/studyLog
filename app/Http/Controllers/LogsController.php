@@ -43,14 +43,14 @@ class LogsController extends Controller
             'summary' => 'required'
         ]);
 
-        $log = new Log([
-            'log_day' => $request->input('log_day'),
-            'user_id' => Auth::user()->id,
-            'hours_spent' => $request->input('hours_spent'),
-            'summary' => $request->input('summary'),
+        $log = Log::create([
+            'log_day' => request('log_day'),
+            'user_id' => auth()->user()->id,
+            'hours_spent' => request('hours_spent'),
+            'summary' => request('summary'),
             'log_id' => strtoupper(str_random(12)),
-            'technologies' => $request->input('technologies'),
-            'resource' => $request->input('resources'),
+            'technologies' => request('technologies'),
+            'resource' => request(resources'),
         ]);
 
         $log->save();
